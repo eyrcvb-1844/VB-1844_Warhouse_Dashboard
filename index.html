@@ -152,8 +152,14 @@
       var graphArray_Final = google.visualization.arrayToDataTable(graph_arr);
     
       var data = new google.visualization.DataView(graphArray_Final); 
-
+      data.setColumns([0, 1,
+                       { calc: "stringify",
+                         sourceColumn: 1,
+                         type: "string",
+                         role: "annotation" },
+                       2]);
       var options = {
+        align: 'center',
         title: 'Time Taken for items to be Shipped',
         hAxis: { title: 'Order ID'},
         vAxis: { title: 'Time Taken (s)'},
@@ -176,14 +182,41 @@
 
 <body>
         <hr style="height:4px;border-width:0;color:gray;background-color:gray">
-   	
+        <style>
+          table {
+            width:100%;
+          }
+          table, th, td {
+            border: 1px solid black;
+            border-collapse: collapse;
+          }
+          th, td {
+            padding: 5px;
+            text-align: left;
+          }
+          #table1 tr:nth-child(even) {
+            background-color: #eee;
+          }
+          #table1 tr:nth-child(odd) {
+           background-color: #fff;
+          }
+          #table1 th {
+            background-color: rgb(77, 73, 73);
+            color: white;
+          }
+          </style>
    		<center><table id="table1" border='1'>
             <tr>
                 <th>Order ID</th>
                 <th>Item</th>
                 <th>Priority</th>
-                <th>Quantity</th>
                 <th>City</th>
+                <th>Dispatched</th>
+                <th>Shipped</th>
+                <th>Order Date and Time</th>
+                <th>Dispatch Date and Time</th>
+                <th>Shipping Date and Time</th>
+                <th>Time Taken</th>
             </tr>
             <tbody id="tableContent">
             </tbody>
@@ -219,8 +252,13 @@
                     trHTML += '<tr><td>' + data.feed.entry[i].gsx$orderid.$t + 
                         	  '</td><td>' + data.feed.entry[i].gsx$item.$t + 
                         	  '</td><td>' + data.feed.entry[i].gsx$priority.$t + 
-                        	  '</td><td>' + data.feed.entry[i].gsx$quantity.$t + 
                         	  '</td><td>'  + data.feed.entry[i].gsx$city.$t + 
+                            '</td><td>'  + data.feed.entry[i].gsx$orderdispatched.$t + 
+                            '</td><td>'  + data.feed.entry[i].gsx$ordershipped.$t + 
+                            '</td><td>'  + data.feed.entry[i].gsx$ordertime.$t +
+                            '</td><td>'  + data.feed.entry[i].gsx$dispatchtime.$t +
+                            '</td><td>'  + data.feed.entry[i].gsx$shippingtime.$t +
+                            '</td><td>'  + data.feed.entry[i].gsx$timetaken.$t +
                         	  '</td></tr>';
 
                 }
@@ -234,6 +272,3 @@
     
 </script>
 </html>
-
-
-
