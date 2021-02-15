@@ -56,7 +56,7 @@
 
             var json_data = {
                 "City": data.feed.entry[i].gsx$city.$t,
-                "OderID" : data.feed.entry[i].gsx$orderid.$t,
+                "OrderID" : data.feed.entry[i].gsx$orderid.$t,
                 "Item" : data.feed.entry[i].gsx$item.$t,
                 "Dispatched": data.feed.entry[i].gsx$orderdispatched.$t,
                 "Shipped": data.feed.entry[i].gsx$ordershipped.$t,
@@ -108,7 +108,7 @@
                         var marker = e.target;
                         popup = L.popup()
                         .setLatLng(marker.getLatLng())
-                        .setContent("Order ID: " + marker.myJsonData.OderID + " || Item: " +   marker.myJsonData.Item + " || Dispatched: " +   marker.myJsonData.Dispatched + " || Shipped: " +   marker.myJsonData.Shipped)
+                        .setContent("Order ID: " + marker.myJsonData.OrderID + " || Item: " +   marker.myJsonData.Item + " || Dispatched: " +   marker.myJsonData.Dispatched + " || Shipped: " +   marker.myJsonData.Shipped)
                         .openOn(map);
                     }
 
@@ -178,7 +178,7 @@
 
       // Converting Json Object to JavaScript Array
       for(var j in jsonDataObject){
-          graph_arr.push([jsonDataObject[j].OderID,jsonDataObject[j].TimeTaken, bar_color[j]]);
+          graph_arr.push([jsonDataObject[j].OrderID,jsonDataObject[j].TimeTaken, bar_color[j]]);
       }
       var graphArray_Final = google.visualization.arrayToDataTable(graph_arr);
     
