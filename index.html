@@ -91,7 +91,7 @@
             for (var j = 0; j < jsonDataObject.length; j++) {
                 if(jsonDataObject[j].Dispatched=='YES' && jsonDataObject[j].Shipped=='YES')
                 var marker = L.marker(L.latLng(parseFloat(jsonDataObject[j].Latitude), parseFloat(jsonDataObject[j].Longitude)),{icon: greenIcon});
-                else if(jsonDataObject[j].Dispatched=='YES' && jsonDataObject[j].Shipped=='NO')
+                else if(jsonDataObject[j].Dispatched=='YES' && (jsonDataObject[j].Shipped!='YES') )
                 var marker = L.marker(L.latLng(parseFloat(jsonDataObject[j].Latitude), parseFloat(jsonDataObject[j].Longitude)),{icon: yellowIcon});
                 //if(jsonDataObject[j].Dispatched=='NO' && jsonDataObject[j].Shipped=='NO')
                 else
@@ -108,7 +108,7 @@
                         var marker = e.target;
                         popup = L.popup()
                         .setLatLng(marker.getLatLng())
-                        .setContent("Order ID: " + marker.myJsonData.OderID + " || Item: " +   marker.myJsonData.Item)
+                        .setContent("Order ID: " + marker.myJsonData.OderID + " || Item: " +   marker.myJsonData.Item + " || Dispatched: " +   marker.myJsonData.Dispatched + " || Shipped: " +   marker.myJsonData.Shipped)
                         .openOn(map);
                     }
 
