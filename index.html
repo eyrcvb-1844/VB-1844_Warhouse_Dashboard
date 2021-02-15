@@ -91,9 +91,10 @@
             for (var j = 0; j < jsonDataObject.length; j++) {
                 if(jsonDataObject[j].Dispatched=='YES' && jsonDataObject[j].Shipped=='YES')
                 var marker = L.marker(L.latLng(parseFloat(jsonDataObject[j].Latitude), parseFloat(jsonDataObject[j].Longitude)),{icon: greenIcon});
-                if(jsonDataObject[j].Dispatched=='YES' && jsonDataObject[j].Shipped=='NO')
+                else if(jsonDataObject[j].Dispatched=='YES' && jsonDataObject[j].Shipped=='NO')
                 var marker = L.marker(L.latLng(parseFloat(jsonDataObject[j].Latitude), parseFloat(jsonDataObject[j].Longitude)),{icon: yellowIcon});
-                if(jsonDataObject[j].Dispatched=='NO' && jsonDataObject[j].Shipped=='NO')
+                //if(jsonDataObject[j].Dispatched=='NO' && jsonDataObject[j].Shipped=='NO')
+                else
                 var marker = L.marker(L.latLng(parseFloat(jsonDataObject[j].Latitude), parseFloat(jsonDataObject[j].Longitude)),{icon: redIcon});
                 marker.bindPopup(jsonDataObject[j].City, {
                         autoClose: false
